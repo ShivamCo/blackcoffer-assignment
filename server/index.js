@@ -5,6 +5,7 @@ import 'dotenv/config';
 
 
 import { GetCountryData } from './router/getCountryData.js';
+import { GetAllCountryName } from './router/getAllCountryName.js';
 
 
 const PORT = process.env.PORT || 4000
@@ -13,7 +14,8 @@ app.use(cors())
 
 connectMongoDB()
 
-app.use("/api/countryData", GetCountryData)
+app.use("/api", GetCountryData)
+app.use("/api", GetAllCountryName)
 
 app.listen(PORT, () => {
 
