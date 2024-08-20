@@ -11,8 +11,8 @@ const AreaChart = () => {
 
   const [selectedCountry, setSelectCountry] = useState({
 
-    countryOne: "United States of America",
-    countryTwo: "Mexico"
+    countryOne: "Libya",
+    countryTwo: "United Kingdom"
 
   });
 
@@ -79,18 +79,20 @@ const AreaChart = () => {
   const counrtyTwoData = chartData.countryTwoData
 
 
-
+ 
   const data = {
     labels: label, // Update based on available years
     datasets: [
       {
-        label: selectedCountry.countryOne,
+        label: selectedCountry.countryOne + " Likelihood",
         data: counrtyOneData.map(i => i.likelihood),
         fill: true,
         backgroundColor: 'rgba(39, 123, 245, 0.2)',
         borderColor: 'rgba(39, 123, 245, 0.8)',
         borderWidth: 2,
-        order: 0
+        order: 0,
+        tension: 0.4,
+        
       },
       {
         label: selectedCountry.countryTwo,
@@ -99,7 +101,9 @@ const AreaChart = () => {
         backgroundColor: 'rgba(245, 39, 39, 0.2)',
         borderColor: 'rgba(245, 39, 39, 0.8)',
         borderWidth: 2,
-        order: 1
+        tension: 0.4,
+        order: 1,
+        
       }
     ]
   };
@@ -118,7 +122,7 @@ const AreaChart = () => {
     <div className="px-4">
       
       <div className="flex justify-center p-2 " >
-        <label className="m-2 font-semibold  text-gray-700 " for="CountryOne">Compare Countries</label>
+        <label className="m-2 font-semibold  text-gray-700 " htmlFor="CountryOne">Compare Countries</label>
 
         <select className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" onChange={selectCountry} name="countryOne" id="country">
           {
@@ -127,7 +131,7 @@ const AreaChart = () => {
               className='py-2 text-sm text-white'
                 key={allContries.indexOf(i)}
                 value={i}
-                selected={i === "United States of America"}
+                selected={i === "Libya"}
               >
                 {i}
               </option>
@@ -138,7 +142,7 @@ const AreaChart = () => {
 
         </select>
 
-        <label className="m-2 font-semibold text-xl text-gray-700 " for="CountryTwo">V/S</label>
+        <label className="m-2 font-semibold text-xl text-gray-700 " htmlFor="CountryTwo">V/S</label>
 
         <select onChange={selectCountry} className='text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center' name="countryTwo" id="country">
         {
@@ -146,7 +150,7 @@ const AreaChart = () => {
               <option
                 key={allContries.indexOf(i)}
                 value={i}
-                selected={i === "Mexico"}
+                selected={i === "United Kingdom"}
               >
                 {i}
               </option>
